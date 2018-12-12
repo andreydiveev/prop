@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </head>
+  <body>
+
+<center>
+
+
+  <script>
+  function solveProportion() {
+  var a = getFieldValue('a');
+  var b = getFieldValue('b');
+  var c = getFieldValue('c');
+  var d = getFieldValue('d');
+
+  if (a == '') {
+      showAnswer('a', 'b', 'c', 'd');
+  } else if (b == '') {
+      showAnswer('b', 'a', 'd', 'c');
+  } else if (c == '') {
+      showAnswer('c', 'a', 'd', 'b');
+  } else if (d == '') {
+      showAnswer('d', 'b', 'c', 'a');
+  }
+
+  function showAnswer(a, b, c, d) {
+
+      b = parseFloat(getFieldValue(b));
+      c = parseFloat(getFieldValue(c));
+      d = parseFloat(getFieldValue(d));
+      if (isNaN(b) || isNaN(c) || isNaN(d)) {
+          document.getElementById('result').innerHTML = 'Вы ввели некорректные данные!';
+          return;
+      }
+
+      document.getElementById('field_'+a).value = (b * c / d);
+  }
+
+  function getFieldValue(name) {
+      return document.getElementById('field_' + name).value.replace(',', '.');
+  }
+}
+
+function resetFields() {
+  document.getElementById('field_a').value = '';
+  document.getElementById('field_b').value = 100;
+  document.getElementById('field_c').value = '';
+  document.getElementById('field_d').value = '';
+  document.getElementById('result').innerHTML = '';
+}
+  </script>
+
+
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+
+  <div style="width:30%;">
+
+    <form>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="A" id="field_a">
+        </div>
+        _
+        <div class="col">
+          <input type="text" class="form-control" placeholder="B" value="100" id="field_b">
+        </div>
+      </div>
+      <br/>
+      <div class="row">
+        <div class="col">
+          <input type="text" class="form-control" placeholder="C" id="field_c">
+        </div>
+        _
+        <div class="col">
+          <input type="text" class="form-control" placeholder="D" id="field_d">
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-success" onclick="solveProportion();">Compute</button>
+      <button type="reset" class="btn btn-warning" onclick="resetFields();">Очистить</button>
+    </div>
+  </div>
+
+  <br/>
+
+  <div id="result"></div>
+
+
+</center>
+  </body>
+</html>
